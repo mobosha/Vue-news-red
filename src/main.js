@@ -5,7 +5,7 @@ import App from './App'
 import 'mint-ui/lib/style.css'
 import './assets/css/style.css'
 import 'animate.css'
-import api from './api/config.js'
+// import api from './utils/fetch.js'
 import router from './router/router.config.js'
 import store from './store/index.js'
 
@@ -24,7 +24,7 @@ Vue.filter('time', function (value) {
 
 new Vue({
     router,
-    api,
+    // api,
     store,
     el: '#app',
     template: '<App/>',

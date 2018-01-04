@@ -1,4 +1,4 @@
-import fetch from './config'
+import fetch from '../utils/fetch.js'
 
 
 //fetchPost  请求方式

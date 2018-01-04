@@ -36,6 +36,7 @@
 <script>
     import { mapGetters,mapState } from 'vuex'
     import axios from  'axios'
+    //import {bunner} from '../api/index.js'
     export default{
         name: 'home',
         data(){

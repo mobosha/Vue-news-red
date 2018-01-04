@@ -1,4 +1,4 @@
-<template>
+pp<template>
     <div class="coding">
             <li class="coding_list" v-for="item in list">
                 <div class="coding_header" >

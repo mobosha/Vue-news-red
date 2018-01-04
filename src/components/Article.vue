@@ -13,17 +13,22 @@
 
 </style>
 <script>
-    import api from '../api/api'
+    // import api from '../api/api'
     import {Indicator} from 'mint-ui'
+    // import { articleDetail } from '../api/article-api';
+    import { articleDetail } from './../api/article-api.js'
     export default{
         data(){
             return {
                 msg: 'hello vue',
-                article: {}
+                article: {},
+                id:null
             }
         },
         created(){
             //this.getArticle();
+            this.id = this.$route.query.id;
+
         },
         activated(){
             this.$emit('title', '文章详情');
@@ -39,17 +44,27 @@
         },
         methods: {
             getArticle: function () {
-                var data={
-                    postid:String(this.$route.query.id)
-                };
-                api.article(data)
-                .then(function (res) {
+                // var data={
+                //     postid:String(this.$route.query.id)
+                // };
+                
+                articleDetail(this.id).then(res => {
                     Indicator.close();
-                    (typeof res.data == "object") ? this.article = res.data : this.article = {"body": "该内容已删除"};
-
-                }.bind(this)).catch(function (error) {
-                    console.log(error)
+                    (typeof res.data == "object") ? this.article = res.data.data : this.article = {"body": "该内容已删除"};
+                    console.log(this.article);
+                }).catch((err) => {
+                    console.log(err)
                 })
+                 
+                 
+                // api.article(data)
+                // .then(function (res) {
+                //     Indicator.close();
+                //     (typeof res.data == "object") ? this.article = res.data : this.article = {"body": "该内容已删除"};
+
+                // }.bind(this)).catch(function (error) {
+                //     console.log(error)
+                // })
 
             }
         },
