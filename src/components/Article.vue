@@ -16,18 +16,18 @@
     // import api from '../api/api'
     import {Indicator} from 'mint-ui'
     // import { articleDetail } from '../api/article-api';
-    import { articleDetail } from './../api/article-api.js'
+    import { articleDetail } from './../api/article'
     export default{
         data(){
             return {
                 msg: 'hello vue',
                 article: {},
-                id:null
+                postid:null
             }
         },
         created(){
             //this.getArticle();
-            this.id = this.$route.query.id;
+            // this.postid = String(this.$route.query.id);
 
         },
         activated(){
@@ -47,8 +47,11 @@
                 // var data={
                 //     postid:String(this.$route.query.id)
                 // };
-                
-                articleDetail(this.id).then(res => {
+                // this.postid = String(this.$route.query.id);
+                var data = {
+                    postid:String(this.$route.query.id)
+                }
+                articleDetail(data).then(res => {
                     Indicator.close();
                     (typeof res.data == "object") ? this.article = res.data.data : this.article = {"body": "该内容已删除"};
                     console.log(this.article);

@@ -21,7 +21,7 @@ const state = {
 
 
 const getters = {
-    [types.DONE_INDEX_BANNER_ROOT]: state => {
+    [types.DONE_INDEX_BANNER_ROOT]: state => { //[types.DONE_INDEX_BANNER_ROOT]:计算属性命名(属性名表达式) 功能
         return state.BannerListRoot
     },
     [types.DONE_INDEX_BANNER]: state => {
@@ -38,7 +38,7 @@ const getters = {
     }
 }
 
-const mutations = {
+const mutations = { //mutation 必须是同步函数
     [types.TOGGLE_INDEX_BANNER](state, all) {
         state.BannerListRoot.push(all)
         state.BannerList = all
@@ -58,13 +58,20 @@ const mutations = {
     }
 }
 
-const actions = {
+const actions = { //为了处理异步操作，让我们来看一看 Action
     // 获取首页banner
     [types.FECTH_INDEX_BANNER]({commit}) {
+        return new Promise((resolve, reject) => { //store.dispatch 可以处理被触发的 action 的处理函数返回的 Promise，并且 store.dispatch 仍旧返回 Promise
             api.banner()
             .then(res => {
-                commit(types.TOGGLE_INDEX_BANNER, res.ads)
-            }).catch(err => console.log(err))
+                commit(types.TOGGLE_INDEX_BANNER, res.ads);// 提交载荷（Payload）最好是个对象；可以向commit 传入额外的参数，即 mutation 的 载荷（payload）
+                resolve(res.ads);
+            }).catch(err => {
+                console.log(err);
+                reject();
+            })
+        })
+            
            
 
     },

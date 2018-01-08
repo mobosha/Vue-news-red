@@ -8,23 +8,25 @@ import 'animate.css'
 // import api from './utils/fetch.js'
 import router from './router/router.config.js'
 import store from './store/index.js'
+import filter from './filters/index.js'
 
 
 import Mint from 'mint-ui';
 Vue.use(Mint);
 
-Vue.filter("minutes", function (value) {
-    //全局方法 Vue.filter() 注册一个自定义过滤器,必须放在Vue实例化前面
-    return (Math.floor(value / 60) + ":" + Math.floor(value % 60));
-});
+// Vue.filter("minutes", function (value) {
+//     //全局方法 Vue.filter() 注册一个自定义过滤器,必须放在Vue实例化前面
+//     return (Math.floor(value / 60) + ":" + Math.floor(value % 60));
+// });
 
-Vue.filter('time', function (value) {
-    return new Date(parseInt(value)).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");
-})
+// Vue.filter('time', function (value) {
+//     return new Date(parseInt(value)).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");
+// })
 
 new Vue({
     router,
     // api,
+    filter,
     store,
     el: '#app',
     template: '<App/>',

@@ -26,7 +26,8 @@
     import {Loadmore} from 'mint-ui';
     Vue.component(Loadmore.name, Loadmore);
     import {Indicator} from 'mint-ui'
-    import api from '../api/api'
+    // import api from '../api/api'
+    import {jockList} from './../api/jock'
     export default{
         data(){
             return {
@@ -48,14 +49,22 @@
                 var data={
                     page:this.size
                 }
-                api.joke(data)
-                .then(function (res) {
-                    this.list = this.list.concat(res.data);
-                    Indicator.close();
-
-                }.bind(this)).catch(function (error) {
-                    console.log(error)
+                jockList(data).then(res => {
+                    if(res.data){
+                       this.list = this.list.concat(res.data.data); 
+                       Indicator.close();
+                    }
+                }).catch( err => {
+                    console.log(err)
                 })
+                // api.joke(data)
+                // .then(function (res) {
+                //     this.list = this.list.concat(res.data);
+                //     Indicator.close();
+
+                // }.bind(this)).catch(function (error) {
+                //     console.log(error)
+                // })
             },
             loadBottom() {
                 this.$refs.loadmore.onTopLoaded();
