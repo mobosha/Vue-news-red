@@ -88,6 +88,34 @@
 
 
 </template>
+<script>
+    export default{
+        props: ["title"],
+        data(){
+            return {
+                msg: 'hello vue',
+                popupVisible: false
+            }
+        },
+        watch: {
+            "$route": "fatched"
+        },
+        methods: {
+            show: function () {
+                this.popupVisible = true
+            },
+            fatched: function () {
+                this.popupVisible = false;
+            },
+            tip: function () {
+                alert("后面再完善上去")
+
+            }
+        },
+        components: {}
+    }
+</script>
+
 <style scoped>
     .headerbar {
         width: 100%;
@@ -129,31 +157,3 @@
         font-size: 30px;
     }
 </style>
-<script>
-
-    export default{
-        props: ["title"],
-        data(){
-            return {
-                msg: 'hello vue',
-                popupVisible: false
-            }
-        },
-        watch: {
-            "$route": "fatched"
-        },
-        methods: {
-            show: function () {
-                this.popupVisible = true
-            },
-            fatched: function () {
-                this.popupVisible = false;
-            },
-            tip: function () {
-                alert("后面再完善上去")
-
-            }
-        },
-        components: {}
-    }
-</script>

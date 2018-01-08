@@ -9,16 +9,18 @@
                 <router-view @title="change" :title="title"></router-view>
               </keep-alive>
             </transition>
-
+        <FooterBar></FooterBar>
     </div>
 </template>
 
 <script>
     import HeadBar from './components/Header.vue'
+    import FooterBar from './components/footer.vue'
     export default {
         name: 'app',
         components: {
-            HeadBar
+            HeadBar,
+            FooterBar
         },
         data(){
             return{

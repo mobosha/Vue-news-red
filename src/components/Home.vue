@@ -18,7 +18,8 @@
                          v-for="item in DONE_INDEX_NEWS">
                 <a :href="{ path: 'article', query: { id: item.postid }}">
                     <div class="m_article_img">
-                        <img :src="item.imgsrc">
+                        <!-- <img :src="item.imgsrc"> -->
+                        <img v-lazy="item.imgsrc">
                     </div>
                     <div class="m_article_info">
                         <div class="m_article_title">

@@ -1,0 +1,10 @@
+
+
+
+
+/*图片懒加载默认*/
+image[lazy=loading] {
+  width: 40px;
+  height: 300px;
+  margin: auto;
+}
