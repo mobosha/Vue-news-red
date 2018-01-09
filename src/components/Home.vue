@@ -41,6 +41,8 @@
 <script>
     import { mapGetters, mapState } from 'vuex'
     import axios from  'axios'
+
+    
     //import {bunner} from '../api/index.js'
     export default{
         name: 'home',
@@ -56,7 +58,6 @@
             this.$emit('title', '首页');
             console.log('created先执行')
             if (!!this.DONE_INDEX_BANNER && this.DONE_INDEX_BANNER.length > 0) {} else {
-                
                 this.getBanners();
             };
 
@@ -107,8 +108,8 @@
             },
             getNews:function () {
                 this.$store.dispatch('FECTH_INDEX_NEWS');
-
             }
+            
         }
     }
 </script>
