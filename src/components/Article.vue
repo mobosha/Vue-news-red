@@ -7,6 +7,7 @@
         </p>
 
         <div class="textcontent" v-html="article.body"></div>
+        
     </div>
 </template>
 <style>
@@ -16,9 +17,8 @@
     // import api from '../api/api'
     import {Indicator} from 'mint-ui'
     import axios from 'axios'
-    // import { articleDetail } from '../api/article-api';   Mock.mock(/\/@mock\/article\/list/, 'get', mopkAPI.getList);
-    // import mockData from './../mock/mock' 
-    import { articleDetail } from './../api/article'
+    import mockData from '../mock/index' //mock 模拟数据
+    import { articleDetail } from './../api/article'  //真实的调用数据接口
     export default{
         data(){
             return {
@@ -30,7 +30,7 @@
         created(){
             //this.getArticle();
             // this.postid = String(this.$route.query.id);
-            this.getMockDate();
+            // this.getMockDate();
         },
         activated(){
             this.$emit('title', '文章详情');
@@ -46,14 +46,12 @@
         },
         methods: {
             getArticle: function () {
-                // var data={
-                //     postid:String(this.$route.query.id)
-                // };
-                // this.postid = String(this.$route.query.id);
+                
                 var data = {
                     postid:String(this.$route.query.id)
                 }
                 articleDetail(data).then(res => {
+                    console.log(res)
                     Indicator.close();
                     (typeof res.data == "object") ? this.article = res.data.data : this.article = {"body": "该内容已删除"};
                     // console.log(this.article);
@@ -61,28 +59,8 @@
                     console.log(err)
                 })
                  
-                 
-                // api.article(data)
-                // .then(function (res) {
-                //     Indicator.close();
-                //     (typeof res.data == "object") ? this.article = res.data : this.article = {"body": "该内容已删除"};
-
-                // }.bind(this)).catch(function (error) {
-                //     console.log(error)
-                // })
-
             },
-            // getMockDate: function () {
-            //     console.log('getMockDate')
-            //     axios.get("http://g.cn").then(res => {
-            //         // if(res.status == 200){
-            //             console.log(res.data);
-            //         // }
-            //     }).catch(err => {
-            //         console.log(err)
-            //     })
-
-            // }
+            
         },
         components: {}
     }
