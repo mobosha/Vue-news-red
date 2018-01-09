@@ -1,22 +1,45 @@
 <template>
     <div class="tabBar">
         <mt-tabbar v-model="selected" fixed>
-            
-            <mt-tab-item id="home" >
+            <!-- <router-link to="/home" class="mint-tab-item">
+                <mt-tab-item id="home" >
+                    <img slot="icon" src="../assets/images/index/icon_f_homeh.png" height="38" width="37">
+                    首页
+                </mt-tab-item>
+            </router-link>
+            <router-link to="/video" class="mint-tab-item">
+                <mt-tab-item id="video" >
+                    <img slot="icon" src="../assets/images/index/icon_f_ehele.png" height="38" width="37">
+                    首页
+                </mt-tab-item>
+            </router-link>
+            <router-link to="/musiclist" class="mint-tab-item">
+                <mt-tab-item id="musiclist" >
+                    <img slot="icon" src="../assets/images/index/icon_f_eh.png" height="38" width="37">
+                    首页
+                </mt-tab-item>
+            </router-link>
+            <router-link to="/jokelist" class="mint-tab-item">
+                <mt-tab-item id="jokelist" >
+                    <img slot="icon" src="../assets/images/index/icon_f_myh.png" height="38" width="37">
+                    首页
+                </mt-tab-item>
+            </router-link> -->
+            <mt-tab-item id="home">
                 <img slot="icon" src="../assets/images/index/icon_f_homeh.png" height="38" width="37">
                 首页
             </mt-tab-item>
-            <mt-tab-item id="video" >
+            <mt-tab-item id="video">
                 <img slot="icon" src="../assets/images/index/icon_f_ehele.png" height="38" width="37">
-                订单
+                视频
             </mt-tab-item>
-            <mt-tab-item id="发现">
+            <mt-tab-item id="musiclist">
                 <img slot="icon" src="../assets/images/index/icon_f_eh.png" height="38" width="37">
-                发现
+                音乐
             </mt-tab-item>
-            <mt-tab-item id="我的">
+            <mt-tab-item id="jokelist">
                 <img slot="icon" src="../assets/images/index/icon_f_myh.png" height="38" width="37">
-                我的
+                段子
             </mt-tab-item>
         </mt-tabbar>
     </div>
@@ -44,11 +67,14 @@
             selected: function (val, oldVal) {
                 // 这里就可以通过 val 的值变更来确定
                 console.log(val);
-                this.$router.push({ path: `${val}` })
+                this.$router.push({ path: `${val}` });
+                // this.$emit('title', `${val}`);
             }
         }
     }
 </script>
 <style>
-    
+    .tabBar .mint-tabbar.is-fixed{
+        z-index: 2006;
+    }
 </style>
