@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <h3>{{article.title}}</h3>
-        <p class="ptime">{{article.ptime}} {{article.source}}</p>
+        <p class="ptime">{{article.ptime|time}} {{article.source}}</p>
         <p v-for="imgs in article.img ">
             <img :src="imgs.src" alt="" width="100%">
         </p>

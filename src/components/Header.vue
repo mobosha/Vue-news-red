@@ -3,7 +3,7 @@
     <div class="headerbar">
         <div id="header">
             <mt-header :title="title" style="background: #f33;height: 50px;font-size: 16px;max-width:750px">
-                <a slot="left" href="javascript:window.history.go(-1)">
+                <a slot="left" @click="goBack">
                     <mt-button icon="back"></mt-button>
                 </a>
                 <mt-button icon="more" slot="right" @click.native="show"></mt-button>
@@ -110,6 +110,9 @@
             tip: function () {
                 alert("后面再完善上去")
 
+            },
+            goBack () {
+                this.$router.back()
             }
         },
         components: {}

@@ -9,7 +9,7 @@
                 <router-view @title="change" :title="title"></router-view>
               </keep-alive>
             </transition>
-        <FooterBar></FooterBar>
+        <FooterBar :showNav="showNav"></FooterBar>
     </div>
 </template>
 
@@ -24,15 +24,47 @@
         },
         data(){
             return{
-                title:"IT"
+                title:"IT",
+                showNav: true
+            }
+        },
+        watch:{
+            '$route': function (){
+                this.routeChange();
             }
         },
         methods:{
             change(title) {
                 this.title = title;
-
+            },
+            routeChange(){
+                let path = this.$route.path;
+                if(path === '/' || path==='/home' || path==='/video' || path==='/musiclist'  || path==='/jokelist'){
+                    this.showNav = true;
+                }else{
+                    this.showNav = false;
+                }
             }
 
+
+        },
+        created (){
+            this.routeChange()
+        },
+        mounted () {
+            window.setTimeout(() => {
+                console.log(this.$el);
+                console.log(document);
+                document.documentElement.scrollTop = 0
+                document.body.scrollTop = 0
+            }, 250)
+            //注意 mounted 不会承诺所有的子组件也都一起被挂载。如果你希望等到整个视图都渲染完毕，可以用 vm.$nextTick 替换掉 mounted：
+            //mounted: function () {
+            //   this.$nextTick(function () {
+            //     // Code that will run only after the
+            //     // entire view has been rendered
+            //   })
+            // }
         }
     }
 </script>

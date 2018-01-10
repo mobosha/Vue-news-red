@@ -6,27 +6,12 @@
 
     </div>
 </template>
-<style scoped>
-    #joke_wrap {
-        width: 100%;
-        background: #f6f6f6;
-    }
-
-    #joke_wrap li {
-        padding: 10px 15px;
-        box-shadow: 3px 3px 8px #ddd;
-        background: #fff;
-        margin-bottom: 10px;
-        margin-top: 5px;
-        font-size: 16px;
-    }
-</style>
 <script>
     import Vue from 'vue'
     import {Loadmore} from 'mint-ui';
     Vue.component(Loadmore.name, Loadmore);
     import {Indicator} from 'mint-ui'
-    // import api from '../api/api'
+    import mockData from '../mock/index'
     import {jockList} from './../api/jock'
     export default{
         data(){
@@ -50,6 +35,7 @@
                     page:this.size
                 }
                 jockList(data).then(res => {
+                    console.log(res)
                     if(res.data){
                        this.list = this.list.concat(res.data.data); 
                        Indicator.close();
@@ -57,14 +43,7 @@
                 }).catch( err => {
                     console.log(err)
                 })
-                // api.joke(data)
-                // .then(function (res) {
-                //     this.list = this.list.concat(res.data);
-                //     Indicator.close();
-
-                // }.bind(this)).catch(function (error) {
-                //     console.log(error)
-                // })
+                
             },
             loadBottom() {
                 this.$refs.loadmore.onTopLoaded();
@@ -75,3 +54,18 @@
         components: {}
     }
 </script>
+<style scoped>
+    #joke_wrap {
+        width: 100%;
+        background: #f6f6f6;
+    }
+
+    #joke_wrap li {
+        padding: 10px 15px;
+        box-shadow: 3px 3px 8px #ddd;
+        background: #fff;
+        margin-bottom: 10px;
+        margin-top: 5px;
+        font-size: 16px;
+    }
+</style>
