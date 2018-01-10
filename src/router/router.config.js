@@ -77,4 +77,13 @@ router.beforeEach((to, from, next) => {
     }
 })
 
+router.afterEach(route => {
+  document.body.scrollTop = 0
+  document.documentElement.scrollTop = 0
+  window.onscroll = null
+  // setTimeout(() => {
+  //   store._mutations.completeLoad[0]()
+  // }, 100)
+})
+
 export default router;

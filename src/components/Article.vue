@@ -17,7 +17,7 @@
     // import api from '../api/api'
     import {Indicator} from 'mint-ui'
     import axios from 'axios'
-    import mockData from '../mock/index' //mock 模拟数据
+    // import mockData from '../mock/index' //mock 模拟数据
     import { articleDetail } from './../api/article'  //真实的调用数据接口
     export default{
         data(){

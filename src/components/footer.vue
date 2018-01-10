@@ -44,9 +44,9 @@
             </mt-tab-item> -->
         </mt-tabbar>
 
-        <section v-show="!showNav" @click="goBack" style="width: 100%">
+        <!-- <section v-show="!showNav" @click="goBack" style="width: 100%">
             <p class="back"> < </p>
-        </section>
+        </section> -->
 
     </div>
 </template>
