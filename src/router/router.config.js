@@ -28,9 +28,14 @@ import login from '../components/User/Login.vue'
 
 
 const routes = [
+//最好都加上name属性，
+//component: resolve => System.import('../components/User/Login.vue') //这种写法是路由懒加载的写法
     { path: '/home', component: Home },
     { path: '/video', component: Video },
-    { path: '/article', component: Article },
+    { path: '/article', name:'article', component: Article },  // <router-link tag="section" class="m_article clearfix" :to="{ path: 'article', query: { id: item.postid}}">
+    // { path: '/article/:id', name:'article', component: Article }, //动态路由匹配，动态路径参数（同一个组件渲染，但是id各不相同） //推荐这种写法 // <router-link class="link-type" :to="{ name: 'questionnaire/update', params: { id: scope.row.id }}"> 编辑 </router-link>
+    // 这两种传参效果是一模一样的
+    // { path: '/article', name:'article', component: Article }, //不推荐 // 不暴露url里边参数的写法，但是当你跳到别的页面或者刷新页面的时候参数会丢失; pc端传递的值显示在url中，存在安全隐患，客户不小心修改了url那样就会出错，移动端就无所谓了，如何才能不显示在url中，同样很简单，但是需要给映射的路径起一个别名，通过name来取别名
     { path: '/player', component: videoplayer },
     { path: '/jokelist', component: JokeList },
     { path: '/musiclist', component: musiclist },
@@ -62,6 +67,8 @@ const router = new VueRouter({
     routes
 });
 
+
+//全局路由守卫，还有路由独享的守卫，以及组件内的守卫
 router.beforeEach((to, from, next) => {
     if (store.state.data.token) {
         next();

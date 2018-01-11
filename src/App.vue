@@ -15,7 +15,7 @@
 
 <script>
     import HeadBar from './components/Header.vue'
-    import FooterBar from './components/footer.vue'
+    import FooterBar from './components/Footer.vue'
     export default {
         name: 'app',
         components: {

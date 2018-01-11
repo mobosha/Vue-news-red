@@ -16,6 +16,13 @@
             a+b的值:{{c}}
             <router-link tag="section" class="m_article clearfix" :to="{ path: 'article', query: { id: item.postid}}"
                          v-for="item in DONE_INDEX_NEWS">
+            <!-- <router-link tag="section" class="m_article clearfix" :to="{ name: 'article', params: { id: item.postid}}"
+                         v-for="item in DONE_INDEX_NEWS"> -->
+            <!-- 下边是不暴露url里边参数的写法 -->
+            <!-- router-link tag="section" class="m_article clearfix" :to="{ name: 'article', params: { id: item.postid}}"
+                         v-for="item in DONE_INDEX_NEWS"> -->
+
+            <!-- :to="{ name: 'user', params: { username: 'evan' }, query: { foo: 'bar' }}" -->
                 <a :href="{ path: 'article', query: { id: item.postid }}">
                     <div class="m_article_img">
                         <!-- <img :src="item.imgsrc"> -->
