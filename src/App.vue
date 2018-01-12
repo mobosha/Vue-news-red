@@ -29,7 +29,7 @@
             }
         },
         watch:{
-            '$route': function (){
+            '$route': function (to, from){
                 this.routeChange();
             }
         },

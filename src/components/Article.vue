@@ -2,16 +2,25 @@
     <div class="content">
         字符串，对应当前路由的路径，总是解析为绝对路径，如 "/foo/bar"： {{$route.path}} <br>
         完成解析后的 URL，包含查询参数和 hash 的完整路径： {{$route.fullPath}} <br>
-        动态参数： {{$route.query.id}} <br>
+        动态参数： {{$route.params.id}} <br>
         一个 key/value 对象，包含了 动态片段 和 全匹配片段，如果没有路由参数，就是一个空对象： {{$route.params}} <br>
         hash: {{$route.hash}} <br>
         当前路由名称： {{$route.name}} <br>
         <!-- 一个数组，包含当前路由的所有嵌套路径片段的 路由记录：{{$route.matched}}  -->
 
-        <router-link :to="{ path: 'article', query:{ id: 'D7PPUF3M000187VE' }}" >跳转</router-link> 
-
+        <router-link :to="{ path: 'article', query:{ id: 'D7PPUF3M000187VE' }}" >跳转,还是跳转到本页面，但是修改id值</router-link> 
+        
         <h3>{{article.title}}</h3>
         <p class="ptime">{{article.ptime|time}} {{article.source}}</p>
+
+        <!-- <router-link :to="{ path:'/article/D7S7OMHL0001875P/profile'}">
+            <h2>profile</h2>
+        </router-link>
+        <router-link :to="{ path:'/article/D7S7OMHL0001875P/userposts'}">
+            <h2>userposts</h2>
+        </router-link>
+        <router-view></router-view> -->
+
         <p v-for="imgs in article.img ">
             <img :src="imgs.src" alt="" width="100%">
         </p>
@@ -38,7 +47,8 @@
             }
         },
         created(){
-            console.log("sss")
+            console.log(this.$route);
+            console.log(this.$router)
             //this.getArticle();
             // this.postid = String(this.$route.query.id);
             // this.getMockDate();
@@ -64,12 +74,13 @@
         //       this.getArticle();
         //     }
         // },
-        beforeRouteUpdate (to, from, next) { //组件内路由守卫
+        beforeRouteUpdate (to, from, next) { //组件内路由守卫（2.2新增）
             // react to route changes...
             // don't forget to call next()
-            next(); //貌似主要用来修改 $router 内部信息
+            next(); //貌似主要用来修改 $router 内部信息; 确保要调用 next 方法，否则beforeRouteUpdate钩子就不会被 resolved(解析)
             console.log('组件内路由守卫',to,from);
-            if(from.query.id !== to.query.id){
+
+            if(from.params.id !== to.params.id){
                 this.getArticle();
             }
         },
@@ -77,7 +88,7 @@
             getArticle: function () {
                 
                 var data = {
-                    postid:String(this.$route.query.id)
+                    postid:String(this.$route.params.id)
                     // postid:String(this.$route.params.id)
                      // postid:String(this.$route.params.id)  //不暴露url里边参数的写法
                 }

@@ -14,10 +14,10 @@
             邮箱+当前组件data:{{countAlias}} 
             用户名：{{UserName}}
             a+b的值:{{c}}
-            <router-link tag="section" class="m_article clearfix" :to="{ path: 'article', query: { id: item.postid}}"
-                         v-for="item in DONE_INDEX_NEWS">
-            <!-- <router-link tag="section" class="m_article clearfix" :to="{ name: 'article', params: { id: item.postid}}"
+            <!-- <router-link tag="section" class="m_article clearfix" :to="{ path: 'article', query: { id: item.postid}}"
                          v-for="item in DONE_INDEX_NEWS"> -->
+            <router-link tag="section" class="m_article clearfix" :to="{ name: 'article', params: { id: item.postid}}"
+                         v-for="item in DONE_INDEX_NEWS">
             <!-- 下边是不暴露url里边参数的写法 -->
             <!-- router-link tag="section" class="m_article clearfix" :to="{ name: 'article', params: { id: item.postid}}"
                          v-for="item in DONE_INDEX_NEWS"> -->
@@ -35,7 +35,7 @@
                         <div class="m_article_desc ">
                             <div class="m_article_desc_l">
                                 <span class="m_article_channel">{{item.source}}</span>
-                                <span class="m_article_time">  {{item.ptime}} <p>{{'1510803490000' | time }}</p>  <p>{{'2680' | minutes }}</p></span>
+                                <span class="m_article_time">{{item.ptime}} <p>{{'1510803490000' | time }}</p>  <p>{{'2680' | minutes }}</p></span>
                             </div>
 
                         </div>
