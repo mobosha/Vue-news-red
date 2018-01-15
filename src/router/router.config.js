@@ -5,28 +5,53 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter);
 import store from '../store/index'
-import Home from '../components/Home.vue'
-import Video from '../components/Video.vue'
-import Article from '../components/Article.vue'
-import videoplayer from '../components/VideoPlayer.vue'
-import JokeList from '../components/JokeList.vue'
-import musiclist from '../components/MusicList.vue'
-import music from '../components/music.vue'
-import musicplayer from '../components/MusicPlayer.vue'
-import wxlist from '../components/WxList.vue'
-import wxarticle from '../components/WxArticle.vue'
-import movie from '../components/movie.vue'
-import moviedetial from '../components/MovieDetail.vue'
-import photo from '../components/photo.vue'
-import view from '../components/PhotoView.vue'
-import lyric from '../components/Lyric.vue'
-import coding from '../components/Coding.vue'
-import zhihu from '../components/Zhihu.vue'
-import sport from '../components/Sport.vue'
-import zhihuarticle from '../components/zhihuArticle.vue'
-import login from '../components/User/Login.vue'
-import profile from '../components/Profile.vue'
-import userposts from '../components/UserPosts.vue'
+// import Home from '../components/Home.vue'
+// import Video from '../components/Video.vue'
+// import Article from '../components/Article.vue'
+// import videoplayer from '../components/VideoPlayer.vue'
+// import JokeList from '../components/JokeList.vue'
+// import musiclist from '../components/MusicList.vue'
+// import music from '../components/music.vue'
+// import musicplayer from '../components/MusicPlayer.vue'
+// import wxlist from '../components/WxList.vue'
+// import wxarticle from '../components/WxArticle.vue'
+// import movie from '../components/movie.vue'
+// import moviedetial from '../components/MovieDetail.vue'
+// import photo from '../components/photo.vue'
+// import view from '../components/PhotoView.vue'
+// import lyric from '../components/Lyric.vue'
+// import coding from '../components/Coding.vue'
+// import zhihu from '../components/Zhihu.vue'
+// import sport from '../components/Sport.vue'
+// import zhihuarticle from '../components/zhihuArticle.vue'
+// import login from '../components/User/Login.vue'
+// import profile from '../components/Profile.vue'
+// import userposts from '../components/UserPosts.vue'
+ 
+const Home = resolve => {require(['../components/Home.vue'], resolve)} //按需加载
+const Video = resolve => {require(['../components/Video.vue'], resolve)} //按需加载
+const Article = resolve => {require(['../components/Article.vue'], resolve)} //按需加载
+const videoplayer = resolve => {require(['../components/VideoPlayer.vue'], resolve)} //按需加载
+const JokeList = resolve => {require(['../components/JokeList.vue'], resolve)} //按需加载
+const musiclist = resolve => {require(['../components/MusicList.vue'], resolve)} //按需加载
+const music = resolve => {require(['../components/music.vue'], resolve)} //按需加载
+const musicplayer = resolve => {require(['../components/MusicPlayer.vue'], resolve)} //按需加载
+const wxlist = resolve => {require(['../components/WxArticle.vue'], resolve)} //按需加载
+const wxarticle = resolve => {require(['../components/Article.vue'], resolve)} //按需加载
+const movie = resolve => {require(['../components/movie.vue'], resolve)} //按需加载
+const moviedetial = resolve => {require(['../components/MovieDetail.vue'], resolve)} //按需加载
+const photo = resolve => {require(['../components/photo.vue'], resolve)} //按需加载
+const view = resolve => {require(['../components/PhotoView.vue'], resolve)} //按需加载
+const lyric = resolve => {require(['../components/Lyric.vue'], resolve)} //按需加载
+const coding = resolve => {require(['../components/Coding.vue'], resolve)} //按需加载
+const zhihu = resolve => {require(['../components/Zhihu.vue'], resolve)} //按需加载
+const sport = resolve => {require(['../components/Sport.vue'], resolve)} //按需加载
+const zhihuarticle = resolve => {require(['../components/zhihuArticle.vue'], resolve)} //按需加载
+const login = resolve => {require(['../components/User/Login.vue'], resolve)} //按需加载
+const profile = resolve => {require(['../components/Profile.vue'], resolve)} //按需加载
+const userposts = resolve => {require(['../components/UserPosts.vue'], resolve)} //按需加载
+
+
 
 
 const routes = [
@@ -36,6 +61,10 @@ const routes = [
         path: '/home',
         name: 'home', //命名路由
         component: Home
+    }, 
+    { 
+        path:'/', 
+        redirect:'home' 
     }, 
     {
         path: '/video',
@@ -47,10 +76,10 @@ const routes = [
         // component?: Component;
         // name?: string; // 命名路由
         // components?: { [name: string]: Component }; // 命名视图组件
-        // redirect?: string | Location | Function;
-        // props?: boolean | string | Function;
+        // redirect?: string | Location | Function;  //
+        // props?: boolean | string | Function; //redirect 后面应该是字符串
         // alias?: string | Array<string>;
-        // children?: Array<RouteConfig>; // 嵌套路由
+        // children?: Array<RouteConfig>; // 嵌套路由  //path子路由不能前置“/”
         // beforeEnter?: (to: Route, from: Route, next: Function) => void;
         // meta?: any;
 
