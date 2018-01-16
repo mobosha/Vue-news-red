@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="music">
         <!--{{list.creator.avatarUrl}}-->
         <div id="music-head">
             <img :src="replaceImg(info.bannerurl)" >
@@ -81,6 +81,7 @@
     }
 </script>
 <style>
+    
     .m-intr {
         position: relative;
         margin: 0 10px 5px 15px;

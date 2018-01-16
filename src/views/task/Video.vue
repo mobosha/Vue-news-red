@@ -17,6 +17,9 @@
     </div>
 </template>
 <style>
+.video{
+    margin-bottom: 69px;
+}
 .type-list {
     padding: 10px 0;
 }
@@ -48,8 +51,8 @@ export default {
         });
 
         this.get();
-        //this.videotype();
-        //this.getTypeData();
+        this.videotype();
+        this.getTypeData();
     },
     activated() {
     },
@@ -77,14 +80,14 @@ export default {
                 type: 0,
                 page: 0
             }
-            // api.video_type(data)
-            //     .then(function (res) {
-            //         this.list = res.data;
-            //         Indicator.close();
-            //     }.bind(this))
-            //     .catch(function (error) {
-            //         console.log(error)
-            //     })
+            api.video_type(data)
+                .then(function (res) {
+                    this.list = res.data;
+                    Indicator.close();
+                }.bind(this))
+                .catch(function (error) {
+                    console.log(error)
+                })
         },
         pushUrl: function (index) {
             sessionStorage.setItem("videodetail", JSON.stringify(this.list[index]));
@@ -93,3 +96,4 @@ export default {
     }
 }
 </script>
+

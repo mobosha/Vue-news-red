@@ -57,6 +57,7 @@
 </script>
 <style scoped>
     #joke_wrap {
+        margin-bottom: 69px;
         width: 100%;
         background: #f6f6f6;
     }

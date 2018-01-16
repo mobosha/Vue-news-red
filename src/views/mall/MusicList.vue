@@ -51,6 +51,9 @@ export default {
 }
 </script>
 <style scoped>
+#musiclist{
+    margin-bottom: 69px;
+}
 .m-type {
   width: 100%;
   box-sizing: border-box;

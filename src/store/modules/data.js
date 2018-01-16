@@ -26,8 +26,8 @@ const state = {
     userId: ''
 }
 
-
-const getters = {
+ 
+const getters = {  //getters 用来做一些计算， return state.UserName +　state.Email
     [types.DONE_INDEX_BANNER_ROOT]: state => { //[types.DONE_INDEX_BANNER_ROOT]:计算属性命名(属性名表达式) 功能
         return state.BannerListRoot
     },
@@ -57,7 +57,7 @@ const mutations = { //mutation 必须是同步函数
         state.SportList = all
     },
     [types.TOGGLE_Login](state, all) {
-        console.log(all)
+        // console.log(all)
         if (all.status == 'Y') {
             state.token = all.results.token;
             state.userId = all.results.code;
@@ -142,7 +142,7 @@ const actions = { //为了处理异步操作，让我们来看一看 Action
                 data: params
             })
             .then(function (res) {
-                console.log(res)
+                // console.log(res)
                 setToken(res.data.results.token)
                 commit(types.TOGGLE_Login, res.data);
                 resolve(res.data);

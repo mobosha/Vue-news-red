@@ -23,6 +23,7 @@
                          v-for="item in DONE_INDEX_NEWS"> -->
 
             <!-- :to="{ name: 'user', params: { username: 'evan' }, query: { foo: 'bar' }}" -->
+
                 <a :href="{ path: 'article', query: { id: item.postid }}">
                     <div class="m_article_img">
                         <!-- <img :src="item.imgsrc"> -->
@@ -64,7 +65,6 @@
             if (!!this.DONE_INDEX_BANNER && this.DONE_INDEX_BANNER.length > 0) {} else {
                 this.getBanners();
             };
-
 
         },
         computed: {
@@ -109,7 +109,7 @@
                 this.$store.dispatch('FECTH_INDEX_BANNER') //配合action异步使用（不是必须异步操作采用action），通过action调用mutation; 
                 //this.$store.commit('updateMessage', value)//也可以通过this.$store.commit('updateMessage', value)，在没有异步操作的时候，直接调起mutation；修改store.state值
                 .then( res => {
-                    console.log(res)
+                    // console.log(res)
                     this.FECTH_Complete_Load(); //loading动画隐藏
                 }).catch( err => {
                     console.log(err);
@@ -119,7 +119,7 @@
                 this.FECTH_Push_Load_Stack(); //loading动画显示
                 this.$store.dispatch('FECTH_INDEX_NEWS')
                 .then( res => {
-                    console.log(res);
+                    // console.log(res);
                     this.FECTH_Complete_Load(); //loading动画隐藏
                 }).catch( err => {
                     console.log(err);
@@ -129,9 +129,11 @@
         }
     }
 </script>
-<style>
-
-    #swiper {
+<style scoped>
+    .home{
+        margin-bottom: 69px;
+    }
+    #swiper { 
         width: 100%;
         max-height: 500px;
         height: auto;
