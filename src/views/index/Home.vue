@@ -46,11 +46,8 @@
     </div>
 </template>
 <script>
-    import { mapGetters, mapState } from 'vuex'
-    import axios from  'axios'
+    import { mapGetters, mapState, mapActions } from 'vuex'
 
-    
-    //import {bunner} from '../api/index.js'
     export default{
         name: 'home',
         data(){
@@ -76,7 +73,6 @@
                 Email: state => state.data.Email,
                 // 为了能够使用 `this` 获取局部状态，必须使用常规函数
                 countAlias: function(state){  //老版本写法 可以调用this.popupVisible
-                    // console.log(state.data.Email+this.popupVisible);
                     console.log('computed后执行')
                     return state.data.Email+this.popupVisible;  //当前this指的是 new Vue实例，所以能调用到实例上边的data数据this.popupVisible
                     
@@ -101,20 +97,33 @@
             }
         },
         methods: {
+            ...mapActions([
+                'FECTH_Push_Load_Stack', // 将 `this.FECTH_Push_Load_Stack()` 映射为 `this.$store.dispatch('FECTH_Push_Load_Stack')`
+                'FECTH_Complete_Load'
+                ]),
             //改为vuex获取数据
             getBanners:function () {
                 console.log(this.$store.state)
+                this.FECTH_Push_Load_Stack(); //loading动画显示
                 //this.$store.dispatch('FECTH_INDEX_BANNER');  //调度 发送 派遣,Action 通过 store.dispatch 方法触发, store.dispatch 仍旧返回 Promise
                 this.$store.dispatch('FECTH_INDEX_BANNER') //配合action异步使用（不是必须异步操作采用action），通过action调用mutation; 
                 //this.$store.commit('updateMessage', value)//也可以通过this.$store.commit('updateMessage', value)，在没有异步操作的时候，直接调起mutation；修改store.state值
-                .then((data) => {
-                    console.log(data)
-                }).catch(err => {
+                .then( res => {
+                    console.log(res)
+                    this.FECTH_Complete_Load(); //loading动画隐藏
+                }).catch( err => {
                     console.log(err);
                 })
             },
             getNews:function () {
-                this.$store.dispatch('FECTH_INDEX_NEWS');
+                this.FECTH_Push_Load_Stack(); //loading动画显示
+                this.$store.dispatch('FECTH_INDEX_NEWS')
+                .then( res => {
+                    console.log(res);
+                    this.FECTH_Complete_Load(); //loading动画隐藏
+                }).catch( err => {
+                    console.log(err);
+                });
             }
             
         }

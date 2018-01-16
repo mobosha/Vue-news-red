@@ -7,13 +7,14 @@ import home from './home.js'
 import task from './task.js'
 import mall from './mall.js'
 import my from './my.js'
-
+import login from './login.js'
 
 const routes = [ 
     ...home.routerList,
     ...task.routerList, 
     ...mall.routerList, 
-    ...my.routerList,  
+    ...my.routerList,
+    ...login.routerList,    
 ];
 
 const router = new VueRouter({

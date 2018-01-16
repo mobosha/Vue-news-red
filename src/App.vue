@@ -14,8 +14,8 @@
 </template>
 
 <script>
-    import HeadBar from './components/Header.vue'
-    import FooterBar from './components/Footer.vue'
+    import HeadBar from './components/common/Header.vue'
+    import FooterBar from './components/common/Footer.vue'
     export default {
         name: 'app',
         components: {

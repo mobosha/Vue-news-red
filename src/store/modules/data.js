@@ -7,7 +7,13 @@
 
 import axios from 'axios'
 import * as types from '../mutation-types.js'
+
+import { getToken, setToken, removeToken, updateUserInfo } from './../../utils/auth.js'
+
 import api from '../../../src/api/api.js'
+
+
+
 const state = {
     BannerListRoot: [],
     BannerList: {},
@@ -16,7 +22,8 @@ const state = {
     UserName: 'ecitlm',
     Email: 'ecitlm@163.com',
     LoginInfo: {},
-    token: ""
+    token: "",
+    userId: ''
 }
 
 
@@ -50,8 +57,10 @@ const mutations = { //mutation 必须是同步函数
         state.SportList = all
     },
     [types.TOGGLE_Login](state, all) {
-        if (all.code == 1) {
-            state.token = all.data.token;
+        console.log(all)
+        if (all.status == 'Y') {
+            state.token = all.results.token;
+            state.userId = all.results.code;
             //localStorage.setItem("token",all.data.token)
         }
         state.LoginInfo = all;
@@ -68,7 +77,7 @@ const actions = { //为了处理异步操作，让我们来看一看 Action
                 resolve(res.ads);
             }).catch(err => {
                 console.log(err);
-                reject();
+                reject(err);
             })
         })
             
@@ -81,10 +90,16 @@ const actions = { //为了处理异步操作，让我们来看一看 Action
             page:20,
             type:0
         }
+        return new Promise((resolve, reject) => {
         api.new_list(data)
             .then(res => {
-                commit(types.TOGGLE_INDEX_NEWS, res.data)
-            }).catch(err => console.log(err))
+                commit(types.TOGGLE_INDEX_NEWS, res.data);
+                resolve(res.data);
+            }).catch(err => {
+                console.log(err);
+                reject(err);
+            })
+        })
     },
     // 获取体育列表
     [types.FECTH_SPORT_LIST]({commit}) {
@@ -93,26 +108,51 @@ const actions = { //为了处理异步操作，让我们来看一看 Action
             page:0,
             type:3
         }
+        return new Promise((resolve, reject) => {
         api.new_list(data)
             .then(res => {
-                commit(types.TOGGLE_SPORT_LIST, res.data)
-            }).catch(err => console.log(err))
+                commit(types.TOGGLE_SPORT_LIST, res.data);
+                resolve(res.data);
+            }).catch(err => {
+                console.log(err);
+                reject(err);
+            })
+        })
     },
     // 登录
     [types.FECTH_Login]({commit}, info) {
-        var params = new URLSearchParams();
-        params.append('username', info.username);
-        params.append('password', info.password);
+        // var params = new URLSearchParams();
+        // params.append('userName', info.username);
+        // params.append('passWord', info.password);
+        // params.append('mark', 0);
+        var params = {
+            'userName': info.username,
+            'passWord': "3b3c48f227981712390e4d016d340676513e407555ab45a82135fb6b89236cf3", //info.password,
+            'mark': 0
+        }
 
-        axios.post("http://h5.it919.cn/index.php?c=api&a=index", params)
-            .then(function (res) {
-                console.log(res.data.msg)
-                commit(types.TOGGLE_Login, res.data);
+        // axios.post("http://h5.it919.cn/index.php?c=api&a=index", params)
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'post',
+                url: 'http://admin.test.moxueyuan.net/enterpriseuniversity/services/backend/sys/apilogin',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                data: params
             })
-            .catch(function (error) {
-                console.log(error);
-                alert(error)
+            .then(function (res) {
+                console.log(res)
+                setToken(res.data.results.token)
+                commit(types.TOGGLE_Login, res.data);
+                resolve(res.data);
+            })
+            .catch(function (err) {
+                console.log(err);
+                reject(err);
             });
+        })
+        
     }
 }
 

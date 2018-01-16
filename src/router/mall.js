@@ -13,7 +13,7 @@ const routerList = [
 	{
 		path: '/musicplayer',
 		name: 'musicplayer',
-		component: resolve => {require(['../components/MusicPlayer.vue'], resolve)} //按需加载
+		component: resolve => {require(['../views/mall/MusicPlayer.vue'], resolve)} //按需加载
 
 	}
 ];

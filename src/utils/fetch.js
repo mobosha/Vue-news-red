@@ -38,6 +38,7 @@ service.interceptors.request.use((config) => {
     }
     config.headers['Accept'] = 'text/plain';
     config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+    
     return config;
 }, (error) => {
     console.log(error); // for debug
