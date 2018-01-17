@@ -11,14 +11,19 @@ import 'animate.css'
 import router from './router/index.js'
 import store from './store/index.js'
 
-import * as utils from './utils/utils.js'
+// import * as utils from './utils/utils.js'
 
 
 import Mint from 'mint-ui';
 Vue.use(Mint);
 
-import Toast from './utils/toast.js'
-Vue.use(Toast);
+//调用自定义插件
+import MyToast from './utils/toast.js'
+Vue.use(MyToast);
+
+// 调用自定义插件 `MyPlugin.install(Vue)`
+import MyPlugin from './utils/plugin.js'
+Vue.use(MyPlugin)
 
 
 // console.log(filters)  // 结果：{normalTime: ƒ} filters暴露出来的是方法
@@ -34,6 +39,24 @@ Object.keys(filters).forEach(key => Vue.filter(key, filters[key]))
 import * as directives from './directive/index.js'
 Object.keys(directives).forEach(key => Vue.directive(key, directives[key]))
 
+// import { Toast } from 'mint-ui';
+// Vue.mixin({
+// 	created: function () {
+// 	    // console.log('混合对象的钩子被调用')
+// 	},
+// 	methods: {
+// 		MoboToast: function(msg, time){
+// 			Toast({
+// 			  message: msg,
+// 			  position: 'middle',
+// 			  duration: time ? time : 2000,
+// 			  // iconClass: 'mintui mintui-success',
+// 			  className: ''
+// 			});
+// 			console.log("MoboToast")
+// 		}
+// 	}
+// })
 
 new Vue({
     router,
@@ -44,5 +67,6 @@ new Vue({
     template: '<App/>',
     components: {
         App,
-    }
+    },
+   
 })

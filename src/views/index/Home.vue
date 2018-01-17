@@ -10,8 +10,8 @@
 
         <!--文章 list-->
         <div id="content-list">
-            邮箱：{{Email}}
-            邮箱+当前组件data:{{countAlias}} 
+            <p >邮箱：{{Email}}</p>
+            <p v-my-demo="{ color: 'red', text: 'hello!' }">邮箱+当前组件data:{{countAlias}} </p>
             用户名：{{UserName}}
             a+b的值:{{c}}
             <!-- <router-link tag="section" class="m_article clearfix" :to="{ path: 'article', query: { id: item.postid}}"
@@ -48,7 +48,7 @@
 </template>
 <script>
     import { mapGetters, mapState, mapActions } from 'vuex'
-
+    import Vue from 'vue'
     export default{
         name: 'home',
         data(){
@@ -65,7 +65,15 @@
             if (!!this.DONE_INDEX_BANNER && this.DONE_INDEX_BANNER.length > 0) {} else {
                 this.getBanners();
             };
-            this.Stoast('令牌格式错误,应为36位UUID字符串');
+
+            // this.Stoast('令牌格式错误,应为36位UUID字符串');  //调用toast.js 插件
+             
+            // console.log(this.$myMethods)
+            // this.$myMethods.Stoast("plugins")  //调用plugin.js 插件
+
+            // Vue.myGlobalMethod('myGlobalMethod,myGlobalMethod');
+            console.log(this)
+            
 
         },
         computed: {
@@ -96,6 +104,9 @@
             c(){ //局部状态，这个状态严格属于单个组件，最好还是作为组件的局部状态
                 return this.a+this.b;
             }
+        },
+        mounted() {
+            this.MoboToast('MoboToast')
         },
         methods: {
             ...mapActions([

@@ -26,7 +26,7 @@
         </p>
 
         <div class="textcontent" v-html="article.body"></div>
-        
+        <!-- <Loading></Loading> -->
     </div>
 </template>
 <style>

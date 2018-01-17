@@ -3,6 +3,7 @@ import Vue from 'vue';
 
 export default {
 	install(){
+		
 		Vue.prototype.Stoast = (msg,time) => {  //自定义函数挂到全局，插件开发
 			Toast({
 			  message: msg,
