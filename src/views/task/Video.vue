@@ -32,7 +32,7 @@
 <script>
 import axios from 'axios'
 import { Indicator } from 'mint-ui'
-// import api from '../api/api'
+import api from '../../api/api'
 export default {
     data() {
         return {
@@ -51,8 +51,8 @@ export default {
         });
 
         this.get();
-        this.videotype();
-        this.getTypeData();
+        // this.videotype();
+        // this.getTypeData();
     },
     activated() {
     },

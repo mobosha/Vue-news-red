@@ -51,6 +51,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         // https://github.com/kangax/html-minifier#options-quick-reference
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+      // path: config.build.assetsPublicPath + config.build.assetsSubDirectory,
       chunksSortMode: 'dependency'
     }),
     // split vendor js into its own file

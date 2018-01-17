@@ -1,11 +1,12 @@
 /*
- * @Author: ecitlm 
- * @Date: 2017-06-05 10:44:15 
- * @Last Modified by: ecitlm
- * @Last Modified time: 2017-06-22 14:09:58
+ * @Author: sunshasha 
+ * @Date: 2018-01-05 10:44:15 
+ * @Last Modified by: sunshasha
+ * @Last Modified time: 2018-01-15 13:44:15 
  */
 import axios from 'axios'
 import qs from 'qs'
+import { Toast } from 'mint-ui'
 // axios 配置
 // axios.defaults.timeout = 5000;
 // axios.defaults.baseURL = 'https://api.it919.cn/public/api'; 
@@ -14,8 +15,8 @@ import qs from 'qs'
 
 // 创建axios实例
 const service = axios.create({
-    baseURL: 'https://api.it919.cn/public/api', // api的base_url
-    //baseURL: process.env.BASE_API, // api的base_url
+    // baseURL: 'https://api.it919.cn/public/api', // api的base_url
+    baseURL: process.env.BASE_API, // api的base_url
     timeout: 5000,                  // 请求超时时间
     withCredentials: true,   //加了这段就可以跨域了
     headers: {'X-Requested-With': 'XMLHttpRequest'},  // `headers` 是即将被发送的自定义请求头
@@ -24,7 +25,7 @@ const service = axios.create({
         return data
     }],
     data: {
-        version: "v1.0",
+        version: process.env.version,
         platform: 'pcweb'
     },
 });
@@ -32,12 +33,11 @@ const service = axios.create({
 
 //request拦截器, POST传参序列化
 service.interceptors.request.use((config) => {
-
     if (config.method === 'post') {
         config.data = qs.stringify(config.data);
     }
-    config.headers['Accept'] = 'text/plain';
-    config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+    // config.headers['Accept'] = 'text/plain';
+    // config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
     
     return config;
 }, (error) => {
@@ -87,11 +87,13 @@ service.interceptors.response.use(
     //     }
     error => {
         console.log('err' + error);// for debug
-        // Message({
-        //     message: error.message,
-        //     type: 'error',
-        //     duration: 5 * 1000
-        // });
+        Toast({
+            message: error,
+            duration: 2 * 1000,
+            position: 'middle',
+            iconClass: 'mintui mintui-error',
+            className: 'toastStyle'
+        });
         return Promise.reject(error);
     }
 )

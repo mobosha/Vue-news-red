@@ -26,10 +26,23 @@ module.exports = {
     ],
     alias: {
       'vue$': 'vue/dist/vue.common.js',
-      'src': resolve('src'),
-      'assets': resolve('src/assets'),
-      'components': resolve('src/components')
+      // 'src': resolve('src'),
+      // 'assets': resolve('src/assets'),
+      // 'components': resolve('src/components')
+      'src': path.resolve(__dirname, '../src'),
+      'assets': path.resolve(__dirname, '../src/assets'),
+      'components': path.resolve(__dirname, '../src/components'),
+      'views': path.resolve(__dirname, '../src/views'),
+      'styles': path.resolve(__dirname, '../src/assets/css'),
+      'api': path.resolve(__dirname, '../src/api'),
+      'utils': path.resolve(__dirname, '../src/utils'),
+      'store': path.resolve(__dirname, '../src/store'),
+      'router': path.resolve(__dirname, '../src/router'),
+      'mock': path.resolve(__dirname, '../src/mock')
     }
+  },
+  externals: {
+    jquery: 'jQuery'
   },
   module: {
     rules: [

@@ -16,6 +16,7 @@
 <script>
     import HeadBar from './components/common/Header.vue'
     import FooterBar from './components/common/Footer.vue'
+    
     export default {
         name: 'app',
         components: {
@@ -49,7 +50,7 @@
 
         },
         created (){
-            this.routeChange()
+            this.routeChange();
         },
         mounted () {
             window.setTimeout(() => {
@@ -70,6 +71,7 @@
 </script>
 
 <style>
+
     body, html {
         margin: 0;
         padding: 0;

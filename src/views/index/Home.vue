@@ -65,6 +65,7 @@
             if (!!this.DONE_INDEX_BANNER && this.DONE_INDEX_BANNER.length > 0) {} else {
                 this.getBanners();
             };
+            this.Stoast('令牌格式错误,应为36位UUID字符串');
 
         },
         computed: {

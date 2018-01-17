@@ -97,7 +97,14 @@
                     console.log(res)
                     Indicator.close();
                     (typeof res.data == "object") ? this.article = res.data.data : this.article = {"body": "该内容已删除"};
-                    // console.log(this.article);
+                    // if(res.data.status == 'Y'){
+                    //     (typeof res.data == "object") ? this.article = res.data.data : this.article = {"body": "该内容已删除"};
+                    // }else{
+                    //     alert(res.data.err_msg);
+                    // }
+                    // console.log(res)
+                    // Indicator.close();
+                    
                 }).catch((err) => {
                     console.log(err)
                 })
