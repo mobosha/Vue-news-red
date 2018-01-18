@@ -18,8 +18,8 @@ import Mint from 'mint-ui';
 Vue.use(Mint);
 
 //调用自定义插件
-// import MyToast from './utils/toast.js'
-// Vue.use(MyToast);
+import MyToast from './utils/toast.js'
+Vue.use(MyToast);
 
 // 调用自定义插件 `MyPlugin.install(Vue)`
 import MyPlugin from './utils/plugin.js'
