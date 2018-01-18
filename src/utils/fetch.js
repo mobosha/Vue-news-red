@@ -7,11 +7,25 @@
 import axios from 'axios'
 import qs from 'qs'
 import { Toast } from 'mint-ui'
+
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 // axios 配置
 // axios.defaults.timeout = 5000;
 // axios.defaults.baseURL = 'https://api.it919.cn/public/api'; 
 // axios.defaults.withCredentials = true;  //表示跨域请求时是否需要使用凭证
 
+
+NProgress.configure({
+    minimum: 0.08,
+    easing: 'ease',
+    positionUsing: '',
+    speed: 200,
+    trickle: true,
+    trickleRate: 0.02,
+    trickleSpeed: 800,
+    showSpinner: true,    
+});
 
 // 创建axios实例
 const service = axios.create({
@@ -33,6 +47,7 @@ const service = axios.create({
 
 //request拦截器, POST传参序列化
 service.interceptors.request.use((config) => {
+    NProgress.start();
     if (config.method === 'post') {
         config.data = qs.stringify(config.data);
     }
@@ -46,6 +61,8 @@ service.interceptors.request.use((config) => {
 });
 
 
+
+
 /**
  * 
  * POST 请求方式
@@ -57,7 +74,12 @@ service.interceptors.request.use((config) => {
 
 // respone拦截器
 service.interceptors.response.use(
-    response => response,
+    response => {
+        setTimeout(function() {
+            NProgress.done();
+        }, 500);
+        return response;
+    },
     /**
      * 下面的注释为通过response自定义code来标示请求状态，当code返回如下情况为权限有问题，登出并返回到登录页
      * 如通过xmlhttprequest 状态码标识 逻辑可写在下面error中

@@ -6,12 +6,17 @@ import 'mint-ui/lib/style.css'
 import './assets/css/common.css'
 import './assets/css/style.css'
 import 'animate.css'
+
 // import api from './utils/fetch.js'
 // import router from './router/router.config.js'
 import router from './router/index.js'
 import store from './store/index.js'
 
-// import * as utils from './utils/utils.js'
+
+// import FastClick from 'fastclick'
+// window.addEventListener('load', () => {
+//   FastClick.attach(document.body)
+// })
 
 
 import Mint from 'mint-ui';
