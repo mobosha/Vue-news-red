@@ -87,6 +87,11 @@
 
             this.conflicting();  //配合plugin.js里边的mixin-conflicting方法，两个对象键名冲突时，取组件对象的键值对；  值为对象的选项，例如 methods, components 和 directives，将被混合为同一个对象。两个对象键名冲突时，取组件对象的键值对。
 
+            
+
+        },
+        mounted(){
+            this.updateMessage();
         },
         computed: {
             ...mapGetters(['DONE_INDEX_BANNER','DONE_INDEX_NEWS']),
@@ -116,6 +121,9 @@
             c(){ //局部状态，这个状态严格属于单个组件，最好还是作为组件的局部状态
                 return this.a+this.b;
             }
+        },
+        watch: {
+
         },
         methods: {
             ...mapActions([
@@ -148,6 +156,11 @@
             },
             conflicting: function () {
               console.log('from self')
+            },
+            updateMessage: function(){
+                console.log(this,this.$parent);
+                console.log(this.$el); //当前组件的的元素
+                console.log(this.$parent.$el); //当前组件的父组件元素； $el是在mounted中才会出现的，在created的时候是没有的,它指的是当前组件的的元素
             }
             
         }
