@@ -50,6 +50,7 @@
     import { mapGetters, mapState, mapActions } from 'vuex'
     import Vue from 'vue'
     export default{
+        myOption: 'hello!',
         name: 'home',
         data(){
             return {
@@ -59,6 +60,13 @@
             }
         },
         created(){
+            var myOption = this.$options.myOption //仅仅能得到当前页面的自定义选项
+            if (myOption) {
+              console.log(myOption)
+              console.log(this.$options);
+            }
+
+            console.log('组件钩子被调用')
             this.getNews();
             this.$emit('title', '首页');
             console.log('created先执行')
@@ -66,14 +74,18 @@
                 this.getBanners();
             };
 
-            // this.Stoast('令牌格式错误,应为36位UUID字符串');  //调用toast.js 插件
+            // this.Stoast('令牌格式错误,应为36位UUID字符串');  //1.调用toast.js 插件
              
             // console.log(this.$myMethods)
-            // this.$myMethods.Stoast("plugins")  //调用plugin.js 插件
+            // this.$myMethods.Stoast("plugins")  //2.调用plugin.js 插件
 
             // Vue.myGlobalMethod('myGlobalMethod,myGlobalMethod');
-            console.log(this)
             
+            this.MoboToastTwo('MoboToastTwo');  //3. plugin.js  mixin
+            
+            // this.MoboToast('MoboToast'); //4. main.js  mixin
+
+            this.conflicting();  //配合plugin.js里边的mixin-conflicting方法，两个对象键名冲突时，取组件对象的键值对；  值为对象的选项，例如 methods, components 和 directives，将被混合为同一个对象。两个对象键名冲突时，取组件对象的键值对。
 
         },
         computed: {
@@ -105,9 +117,6 @@
                 return this.a+this.b;
             }
         },
-        mounted() {
-            this.MoboToast('MoboToast')
-        },
         methods: {
             ...mapActions([
                 'FECTH_Push_Load_Stack', // 将 `this.FECTH_Push_Load_Stack()` 映射为 `this.$store.dispatch('FECTH_Push_Load_Stack')`
@@ -136,6 +145,9 @@
                 }).catch( err => {
                     console.log(err);
                 });
+            },
+            conflicting: function () {
+              console.log('from self')
             }
             
         }

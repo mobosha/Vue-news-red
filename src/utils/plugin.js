@@ -41,22 +41,29 @@ export default {
 	})
 	Vue.component('Loading',LoadingComponent)//直接在所有组件中调用 <loading></loading>
 	//3.注入组件
-	Vue.mixin({  //js内容mixin
-		created: function(){
+	Vue.mixin({  //全局混合：混合对象被混入所有组件的本身选项；局部混合只被混入当前组件的选项； 混合 (mixins) 是一种分发 Vue 组件中可复用功能的非常灵活的方式。混合对象可以包含任意组件选项。当组件使用混合对象时，所有混合对象的选项将被混入该组件本身的选项。
+		created: function(){  //同名钩子函数将混合为一个数组，因此都将被调用。另外，混合对象的 钩子将在组件自身钩子 之前 调用 
 			//逻辑...
-			// console.log('mixin',this)
+			console.log('混合对象的钩子被调用');
+			var myOption = this.$options.myOption
+		    if (myOption) {
+		      console.log(myOption)
+		    }
 		},
-		// methods: {
-		// 	MoboToast: function(msg, time){
-		// 		Toast({
-		// 		  message: msg,
-		// 		  position: 'middle',
-		// 		  duration: time ? time : 2000,
-		// 		  // iconClass: 'mintui mintui-success',
-		// 		  className: ''
-		// 		});
-		// 	}
-		// }
+		methods: {  //值为对象的选项，例如 methods, components 和 directives，将被混合为同一个对象。两个对象键名冲突时，取组件对象的键值对。
+			MoboToastTwo: function(msg, time){
+				Toast({
+				  message: msg,
+				  position: 'middle',
+				  duration: time ? time : 2000,
+				  // iconClass: 'mintui mintui-success',
+				  className: ''
+				});
+			},
+			conflicting: function () {
+		      console.log('from mixin')
+		    }
+		}
 	})
 	// 4.添加实例方法
 	// Vue.prototype.$myMethods = {

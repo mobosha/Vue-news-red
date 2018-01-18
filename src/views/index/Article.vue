@@ -40,6 +40,7 @@
     // import { articleDetail } from './../api/article'  //真实的调用数据接口
     import { articleDetail } from './../../api/article'
     export default{
+        myOption: 'hello!',
         data(){
             return {
                 msg: 'hello vue',
@@ -48,6 +49,7 @@
             }
         },
         created(){
+            
             console.log(this.$route);
             console.log(this.$router)
             //this.getArticle();

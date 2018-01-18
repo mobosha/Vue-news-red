@@ -18,6 +18,7 @@
     import FooterBar from './components/common/Footer.vue'
     
     export default {
+        
         name: 'app',
         components: {
             HeadBar,
@@ -50,6 +51,7 @@
 
         },
         created (){
+            
             this.routeChange();
         },
         mounted () {
