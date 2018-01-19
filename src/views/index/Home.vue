@@ -77,7 +77,7 @@
             this.Stoast('令牌格式错误,应为36位UUID字符串');  //1.调用toast.js 插件
              
             // console.log(this.$myMethods)
-            // this.$myMethods.Stoast("plugins")  //2.调用plugin.js 插件
+            // this.$myMethods.Stoast("plugins")  //2.调用plugin.js 插件;推荐
 
             // Vue.myGlobalMethod('myGlobalMethod,myGlobalMethod');
             

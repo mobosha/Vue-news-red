@@ -111,6 +111,8 @@ import { getLang, updateUserInfo } from '../../utils/auth.js'
             var lang = getLang();
             this.lang = lang ? lang : this.$i18n.locale; //获取当前语言类型，先从cookie中获取
             this.$i18n.locale = this.lang;
+
+            this.$myMethods.Stoast(this.$t('m.music')); //js中中英文写法
         },
         methods: {
             show: function () {
