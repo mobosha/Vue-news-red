@@ -8,7 +8,7 @@
                 </a>
                 <mt-button icon="more" slot="right" @click.native="show"></mt-button>
                 <mt-button size="small" slot="right" @click.native="changeLangEvent">
-                    <i :class="{active : lang == 'zh-CN' }">CN</i>/
+                    <i :class="{active : lang == 'zh-CN' }">CN</i> /
                     <i :class="{active : lang == 'en-US' }">EN</i>
                 </mt-button>
             </mt-header>

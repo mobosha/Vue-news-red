@@ -6,6 +6,7 @@
                     <img slot="icon" src="../../assets/images/index/icon_f_homeh.png" height="38" width="37">
                     <!-- 首页 -->
                     {{$t('m.home')}}
+                    <!-- <span v-text="$t('m.music')"></span> -->
                 </mt-tab-item>
             </router-link>
             <router-link to="/video" class="tabfoot">
