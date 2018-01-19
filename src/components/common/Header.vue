@@ -7,6 +7,10 @@
                     <mt-button icon="back"></mt-button>
                 </a>
                 <mt-button icon="more" slot="right" @click.native="show"></mt-button>
+                <mt-button size="small" slot="right" @click.native="changeLangEvent">
+                    <i :class="{active : lang == 'zh-CN' }">CN</i>/
+                    <i :class="{active : lang == 'en-US' }">EN</i>
+                </mt-button>
             </mt-header>
         </div>
 
@@ -89,16 +93,24 @@
 
 </template>
 <script>
-    export default{
+import { MessageBox } from 'mint-ui';
+import { getLang, updateUserInfo } from '../../utils/auth.js'
+    export default{ 
         props: ["title"],
         data(){
             return {
                 msg: 'hello vue',
-                popupVisible: false
+                popupVisible: false,
+                lang: ''
             }
         },
         watch: {
             "$route": "fatched"
+        },
+        created(){
+            var lang = getLang();
+            this.lang = lang ? lang : this.$i18n.locale; //获取当前语言类型，先从cookie中获取
+            this.$i18n.locale = this.lang;
         },
         methods: {
             show: function () {
@@ -113,7 +125,31 @@
             },
             goBack () {
                 this.$router.back()
-            }
+            },
+            changeLangEvent() {  //切换语言
+                MessageBox.confirm('是否认证？', {
+                message: '确定切换语言吗?',
+                title: '提示',
+                confirmButtonText: '确定',
+                cancelButtonText: '取消'
+            }).then(action => { //确定按钮触发
+                if (action == 'confirm') {
+                    if ( this.lang === 'zh-CN' ) {
+                      this.lang = 'en-US';
+                      this.$i18n.locale = this.lang; //关键语句
+                   }else {
+                      this.lang = 'zh-CN';
+                      this.$i18n.locale = this.lang; //关键语句
+                   }
+                   updateUserInfo({lang: this.lang});
+                }
+            }).catch(action => {  //取消按钮触发
+                if (action == 'cancel') {
+                    console.log('cancel');
+                }
+            });
+          }     
+            
         },
         components: {}
     }
@@ -158,5 +194,8 @@
     #title-list li i {
         display: block;
         font-size: 30px;
+    }
+    .active{
+        color: #0952D2;
     }
 </style>

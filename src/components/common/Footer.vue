@@ -4,25 +4,29 @@
             <router-link to="/home" class="tabfoot">
                 <mt-tab-item id="home">
                     <img slot="icon" src="../../assets/images/index/icon_f_homeh.png" height="38" width="37">
-                    首页
+                    <!-- 首页 -->
+                    {{$t('m.home')}}
                 </mt-tab-item>
             </router-link>
             <router-link to="/video" class="tabfoot">
                 <mt-tab-item id="video">
                     <img slot="icon" src="../../assets/images/index/icon_f_ehele.png" height="38" width="37">
-                    视频
+                    <!-- 视频 -->
+                    {{$t('m.video')}}
                 </mt-tab-item>
             </router-link>
             <router-link to="/musiclist" class="tabfoot">
                 <mt-tab-item id="musiclist">
                     <img slot="icon" src="../../assets/images/index/icon_f_eh.png" height="38" width="37">
-                    音乐
+                    <!-- 音乐 -->
+                    {{$t('m.music')}}
                 </mt-tab-item>
             </router-link>
             <router-link to="/jokelist" class="tabfoot">
                 <mt-tab-item id="jokelist">
                     <img slot="icon" src="../../assets/images/index/icon_f_myh.png" height="38" width="37">
-                    段子
+                    <!-- 段子 -->
+                    {{$t('m.jock')}}
                 </mt-tab-item>
             </router-link>
 

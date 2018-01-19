@@ -12,7 +12,8 @@ import 'animate.css'
 import router from './router/index.js'
 import store from './store/index.js'
 
-
+import VueI18n from 'vue-i18n'
+Vue.use(VueI18n);
 // import FastClick from 'fastclick'
 // window.addEventListener('load', () => {
 //   FastClick.attach(document.body)
@@ -63,10 +64,24 @@ Object.keys(directives).forEach(key => Vue.directive(key, directives[key]))
 // 	}
 // })
 
+
+// 中英文切换
+const i18n = new VueI18n({
+    locale: 'zh-CN',    // 语言标识
+    //this.$i18n.locale // 通过切换locale的值来实现语言切换
+    messages: {
+      'zh-CN': require('./assets/lang/zh.js'),   // 中文语言包
+      'en-US': require('./assets/lang/en.js')    // 英文语言包
+    }
+})
+
+
+
 new Vue({
     router,
     // api,
     // filters,
+    i18n,  // 不要忘记
     store,
     el: '#app',
     template: '<App/>',
