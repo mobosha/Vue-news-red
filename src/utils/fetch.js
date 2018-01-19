@@ -8,24 +8,24 @@ import axios from 'axios'
 import qs from 'qs'
 import { Toast } from 'mint-ui'
 
-import NProgress from 'nprogress'
-import 'nprogress/nprogress.css'
+
 // axios 配置
 // axios.defaults.timeout = 5000;
 // axios.defaults.baseURL = 'https://api.it919.cn/public/api'; 
 // axios.defaults.withCredentials = true;  //表示跨域请求时是否需要使用凭证
 
-
-NProgress.configure({
-    minimum: 0.08,
-    easing: 'ease',
-    positionUsing: '',
-    speed: 200,
-    trickle: true,
-    trickleRate: 0.02,
-    trickleSpeed: 800,
-    showSpinner: true,    
-});
+// import NProgress from 'nprogress'
+// import 'nprogress/nprogress.css'
+// NProgress.configure({
+//     minimum: 0.08,
+//     easing: 'ease',
+//     positionUsing: '',
+//     speed: 200,
+//     trickle: true,
+//     trickleRate: 0.02,
+//     trickleSpeed: 800,
+//     showSpinner: true,    
+// });
 
 // 创建axios实例
 const service = axios.create({
@@ -47,7 +47,7 @@ const service = axios.create({
 
 //request拦截器, POST传参序列化
 service.interceptors.request.use((config) => {
-    NProgress.start();
+    // NProgress.start();
     if (config.method === 'post') {
         config.data = qs.stringify(config.data);
     }
@@ -75,9 +75,9 @@ service.interceptors.request.use((config) => {
 // respone拦截器
 service.interceptors.response.use(
     response => {
-        setTimeout(function() {
-            NProgress.done();
-        }, 500);
+        // setTimeout(function() {
+        //     NProgress.done();
+        // }, 500);
         return response;
     },
     /**
@@ -109,13 +109,6 @@ service.interceptors.response.use(
     //     }
     error => {
         console.log('err' + error);// for debug
-        Toast({
-            message: error,
-            duration: 2 * 1000,
-            position: 'middle',
-            iconClass: 'mintui mintui-error',
-            className: 'toastStyle'
-        });
         return Promise.reject(error);
     }
 )
