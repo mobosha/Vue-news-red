@@ -67,9 +67,10 @@ Object.keys(directives).forEach(key => Vue.directive(key, directives[key]))
 
 // 中英文切换
 import { getLang, updateUserInfo } from 'utils/auth.js' 
-var lang = getLang();
+var lang = getLang() ? getLang() : 'zh-CN';
+
 const i18n = new VueI18n({
-    locale: lang ? lang : 'zh-CN',    // 语言标识,获取当前语言类型，先从cookie中获取
+    locale: lang,    // 语言标识,获取当前语言类型，先从cookie中获取
     //this.$i18n.locale // 通过切换locale的值来实现语言切换
     messages: {
       'zh-CN': require('./assets/lang/zh.js'),   // 中文语言包

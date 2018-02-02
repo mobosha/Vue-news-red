@@ -6,7 +6,7 @@
                 <a slot="left" @click="goBack">
                     <mt-button icon="back"></mt-button>
                 </a>
-                <mt-button icon="more" slot="right" @click.native="show"></mt-button>
+                <!-- <mt-button icon="more" slot="right" @click.native="show"></mt-button> -->
                 <mt-button size="small" slot="right" @click.native="changeLangEvent">
                     <i :class="{active : lang == 'zh-CN' }">CN</i> /
                     <i :class="{active : lang == 'en-US' }">EN</i>
@@ -14,7 +14,7 @@
             </mt-header>
         </div>
 
-        <mt-popup
+        <!-- <mt-popup
                 v-model="popupVisible" position="top"
                 popup-transition="popup-fade" style="top:50px">
             <ul id="title-list">
@@ -87,7 +87,7 @@
 
             </ul>
 
-        </mt-popup>
+        </mt-popup> -->
     </div>
 
 
@@ -108,9 +108,7 @@ import { getLang, updateUserInfo } from '../../utils/auth.js'
             "$route": "fatched"
         },
         created(){
-            var lang = getLang();
-            this.lang = lang ? lang : this.$i18n.locale; //获取当前语言类型，先从cookie中获取
-            this.$i18n.locale = this.lang;
+            this.lang = this.$i18n.locale; //获取当前语言类型
 
             this.$myMethods.Stoast(this.$t('m.music')); //js中中英文写法
         },

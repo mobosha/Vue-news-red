@@ -3,6 +3,7 @@
         <mt-tabbar v-model="selected" fixed v-show="showNav">
             <router-link to="/home" class="tabfoot">
                 <mt-tab-item id="home">
+                    <img slot="icon" src="../../assets/images/index/icon_f_homel.png" height="38" width="37">
                     <img slot="icon" src="../../assets/images/index/icon_f_homeh.png" height="38" width="37">
                     <!-- 首页 -->
                     {{$t('m.home')}}
@@ -11,13 +12,15 @@
             </router-link>
             <router-link to="/video" class="tabfoot">
                 <mt-tab-item id="video">
-                    <img slot="icon" src="../../assets/images/index/icon_f_ehele.png" height="38" width="37">
+                    <img slot="icon" src="../../assets/images/index/icon_f_taskl.png" height="38" width="37">
+                    <img slot="icon" src="../../assets/images/index/icon_f_taskh.png" height="38" width="37">
                     <!-- 视频 -->
                     {{$t('m.video')}}
                 </mt-tab-item>
             </router-link>
             <router-link to="/musiclist" class="tabfoot">
                 <mt-tab-item id="musiclist">
+                    <img slot="icon" src="../../assets/images/index/icon_f_el.png" height="38" width="37">
                     <img slot="icon" src="../../assets/images/index/icon_f_eh.png" height="38" width="37">
                     <!-- 音乐 -->
                     {{$t('m.music')}}
@@ -25,6 +28,8 @@
             </router-link>
             <router-link to="/jokelist" class="tabfoot">
                 <mt-tab-item id="jokelist">
+                    <!-- <div slot='icon' class="icon-my"></div> -->
+                    <img slot="icon" src="../../assets/images/index/icon_f_myl.png" height="38" width="37">
                     <img slot="icon" src="../../assets/images/index/icon_f_myh.png" height="38" width="37">
                     <!-- 段子 -->
                     {{$t('m.jock')}}
@@ -109,7 +114,21 @@
     .tabfoot a .mint-tab-item-label{
         color: #444;
     }
+    .tabfoot a .mint-tab-item-icon img:last-child{ 
+        display: none;
+    }
     .router-link-exact-active.router-link-active a .mint-tab-item-label{
         color: #0952D2;
     }
+    .router-link-exact-active.router-link-active a .mint-tab-item-icon img:last-child{
+        display: block;
+    }
+    .router-link-exact-active.router-link-active a .mint-tab-item-icon img:first-child{
+        display: none;
+    }
+    /*.icon-my{
+        background:url('../../assets/images/index/icon_f_myh.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+    }*/
 </style>
