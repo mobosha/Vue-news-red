@@ -14,3 +14,17 @@ export function bunner(){
 		method: 'get'
 	});
 }
+
+// 最新课程
+export function getNewCourse(){
+	return fetch({
+		url:'home/newCourse',
+		method: 'get',
+		params: {
+			callback: 'JSON_CALLBACK',
+			apiName: 'ELE_NEW_COURSE_LIST',
+			apiType: 'course',
+            pageSize:3
+		}
+	});
+}

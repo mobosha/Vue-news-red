@@ -7,7 +7,7 @@
 import axios from 'axios'
 import qs from 'qs'
 import { Toast } from 'mint-ui'
-
+import { getToken, getUserId } from './auth.js'
 
 // axios 配置
 // axios.defaults.timeout = 5000;
@@ -37,11 +37,7 @@ const service = axios.create({
     transformRequest: [function (data) { //  只能用在 'PUT', 'POST' 和 'PATCH' 这几个请求方法
         data = qs.stringify(data)
         return data
-    }],
-    data: {
-        version: process.env.version,
-        platform: 'pcweb'
-    },
+    }]
 });
 
 
@@ -50,6 +46,37 @@ service.interceptors.request.use((config) => {
     // NProgress.start();
     if (config.method === 'post') {
         config.data = qs.stringify(config.data);
+    }
+    console.log(config);
+    const defaultParams = {
+        version: process.env.VERSION,
+        platform: 'wechat',
+        userId: getUserId(),
+        token: getToken()
+    };
+    // 不用传递token白名单，根据config.data/params.apiName
+    
+    if (config.method == 'post') {
+        config.data = {
+            ...defaultParams,
+            ...config.data
+        }
+        // if(!config.data.noToken){ //token必传,否则传递noToken:true
+        //     config.data.userId = userId&&token ? userId : '';
+        //     config.data.token = userId&&token ? token : '';
+        // }
+        
+    } else if (config.method == 'get') {
+        config.params = {
+            ...defaultParams,
+            ...config.params
+        }
+        
+        // if(!config.params.noToken){ //token必传,否则传递noToken:true
+        //     config.params.userId = userId&&token ? userId : '';
+        //     config.params.token = userId&&token ? token : '';
+        // }
+        
     }
     // config.headers['Accept'] = 'text/plain';
     // config.headers['Content-Type'] = 'application/x-www-form-urlencoded';

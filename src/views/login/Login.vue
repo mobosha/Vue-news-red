@@ -18,8 +18,8 @@
         data(){
             return {
                 info: {
-                    username: "M00015",
-                    password: "123456a"
+                    username: "15201292679",
+                    password: "sss111"
                 }
             }
         },
@@ -43,11 +43,9 @@
                 } else {
                     
                     this.$store.dispatch('FECTH_Login', this.info).then((res) => {
-                        // if(res.data.status == 'Y'){ //判断接口返回状态 Y
-                        //     this.$router.push({ path: '/home' });
-                        // }
-                        
-                        this.$router.push({ path: '/home' });
+                        if(res.status == 'Y'){ //判断接口返回状态 Y
+                            this.$router.push({ path: '/home' });
+                        }
                     }).catch((err) => {
                         console.log(err);
                     })

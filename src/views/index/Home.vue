@@ -44,11 +44,16 @@
                 </a>
             </router-link>
         </div>
+
+        <Course :couseData='data.newCourseList'></Course>
     </div>
 </template>
 <script>
     import { mapGetters, mapState, mapActions } from 'vuex'
     import Vue from 'vue'
+    import Course from '../../components/content/Course.vue'
+    import { getNewCourse } from './../../api/index'
+    import mockData from './../../mock/index' //mock 模拟数据 
     export default{
         myOption: 'hello!',
         name: 'home',
@@ -57,6 +62,9 @@
                 popupVisible: true,
                 a:1,
                 b:2,
+                data: {
+                    newCourseList:[],
+                }
             }
         },
         created(){
@@ -67,11 +75,11 @@
             }
 
             console.log('组件钩子被调用')
-            this.getNews();
+            // this.getNews();
             this.$emit('title', '首页');
             console.log('created先执行')
             if (!!this.DONE_INDEX_BANNER && this.DONE_INDEX_BANNER.length > 0) {} else {
-                this.getBanners();
+                // this.getBanners();
             };
 
             this.Stoast('令牌格式错误,应为36位UUID字符串');  //1.调用toast.js 插件
@@ -87,11 +95,12 @@
 
             this.conflicting();  //配合plugin.js里边的mixin-conflicting方法，两个对象键名冲突时，取组件对象的键值对；  值为对象的选项，例如 methods, components 和 directives，将被混合为同一个对象。两个对象键名冲突时，取组件对象的键值对。
 
-            
+            this.getNewCourseData();
 
         },
         mounted(){
             this.updateMessage();
+            
         },
         computed: {
             ...mapGetters(['DONE_INDEX_BANNER','DONE_INDEX_NEWS']),
@@ -161,8 +170,26 @@
                 console.log(this,this.$parent);
                 console.log(this.$el); //当前组件的的元素
                 console.log(this.$parent.$el); //当前组件的父组件元素； $el是在mounted中才会出现的，在created的时候是没有的,它指的是当前组件的的元素
-            }
+            },
+            getNewCourseData: function(){
+                var data = {
+                    type: 0,
+                    page: 0
+                }
+                this.FECTH_Push_Load_Stack(); //loading动画显示
+                getNewCourse(data).then(res => {
+                    this.FECTH_Complete_Load(); //loading动画隐藏
+                    this.data.newCourseList = res.data.data
+                    console.log( res)
+                    // this.data.newCourse = res.data.results.data;
+                }).catch((err) => {
+                    console.log(err)
+                })
+            },
             
+        },
+        components:{
+            Course
         }
     }
 </script>

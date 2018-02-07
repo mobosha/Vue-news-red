@@ -1,13 +1,11 @@
 <template>
     <div class="video">
-        <ul class="type-list">
-            <li v-for="item in typelist" :id="item.tid">{{item.tname}}</li>
-        </ul>
-        <section class="video-item" v-for="(item,index) in list" @click="pushUrl(index)">
+        
+        <section class="video-item ub" v-for="(item,index) in list" @click="pushUrl(index)">
             <div class="v-poster">
                 <img :src="item.cover">
             </div>
-            <div class="v-mask">
+            <div class="v-mask ub-f1">
                 <div class="v-head">
                     <div class="v-play"></div>
                     <div class="v-title">{{item.title}}</div>
@@ -30,9 +28,8 @@
 }
 </style>
 <script>
-import axios from 'axios'
-import { Indicator } from 'mint-ui'
-import api from '../../api/api'
+import { taskList } from './../../api/task'
+import mockData from './../../mock/index'
 export default {
     data() {
         return {
@@ -45,49 +42,24 @@ export default {
     },
     created() {
         this.$emit('title', '热门视频');
-        Indicator.open({
-            text: '加载中...',
-            spinnerType: 'fading-circle'
-        });
 
         this.get();
-        // this.videotype();
-        // this.getTypeData();
     },
     activated() {
     },
     methods: {
-        videotype: function () {
-            axios.get(apiurl.videoType()).then(function (res) {
-                console.log(res.data);
-                this.typelist = res.data;
-                // Indicator.close();
-
-            }.bind(this)).catch(function (error) {
-                console.log(error)
-            })
-        },
-        getTypeData: function () {
-            axios.get(apiurl.videoTypeData(this.type, 0, 10)).then(function (res) {
-                console.log(res.data[this.type]);
-                // Indicator.close();
-            }.bind(this)).catch(function (error) {
-                console.log(error)
-            });
-        },
+        
         get: function () {
             var data = {
                 type: 0,
                 page: 0
             }
-            api.video_type(data)
-                .then(function (res) {
-                    this.list = res.data;
-                    Indicator.close();
-                }.bind(this))
-                .catch(function (error) {
-                    console.log(error)
-                })
+            taskList(data).then(res => {
+                this.list = res.data.list;
+                console.log(res)
+            }).catch(error => {
+                console.log(error)
+            })
         },
         pushUrl: function (index) {
             sessionStorage.setItem("videodetail", JSON.stringify(this.list[index]));

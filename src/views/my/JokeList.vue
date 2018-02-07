@@ -11,7 +11,6 @@
     import {Loadmore} from 'mint-ui';
     Vue.component(Loadmore.name, Loadmore);
     import {Indicator} from 'mint-ui'
-    // import mockData from '../mock/index'
     import mockData from './../../mock/index'
     import { jockList } from './../../api/jock'
     export default{

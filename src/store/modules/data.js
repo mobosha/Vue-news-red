@@ -22,7 +22,7 @@ const state = {
     UserName: 'ecitlm',
     Email: 'ecitlm@163.com',
     LoginInfo: {},
-    token: "",
+    token: '',
     userId: ''
 }
 
@@ -60,8 +60,7 @@ const mutations = { //mutation 必须是同步函数
         // console.log(all)
         if (all.status == 'Y') {
             state.token = all.results.token;
-            state.userId = all.results.code;
-            //localStorage.setItem("token",all.data.token)
+            state.userId = all.results.userId;
         }
         state.LoginInfo = all;
     }
@@ -127,23 +126,23 @@ const actions = { //为了处理异步操作，让我们来看一看 Action
         // params.append('mark', 0);
         var params = {
             'userName': info.username,
-            'passWord': "3b3c48f227981712390e4d016d340676513e407555ab45a82135fb6b89236cf3", //info.password,
-            'mark': 0
+            'passWord': "NmQ4NWRhOTgyNDFkY2YwZjI4ZjEwMTA5OGI1Njk3OTYyOTRlZjY5OA==", //info.password,
         }
 
         // axios.post("http://h5.it919.cn/index.php?c=api&a=index", params)
         return new Promise((resolve, reject) => {
             axios({
                 method: 'post',
-                url: 'http://admin.test.moxueyuan.net/enterpriseuniversity/services/backend/sys/apilogin',
+                url: 'http://slams.dev.chinamobo.com/enterpriseuniversity/services/backend/sys/apilogin',
                 headers: {
                     'Content-type': 'application/json'
                 },
                 data: params
             })
             .then(function (res) {
-                // console.log(res)
+                console.log(res)
                 setToken(res.data.results.token)
+                updateUserInfo({userId: res.data.results.userId})
                 commit(types.TOGGLE_Login, res.data);
                 resolve(res.data);
             })
