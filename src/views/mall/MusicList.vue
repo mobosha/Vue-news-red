@@ -22,7 +22,7 @@ export default {
     this.get()
   },
   activated() {
-    this.$emit('title', '音乐特色榜');
+    this.$emit('title', this.$route.meta._menuName);
   },
   methods: {
     loading: function () {

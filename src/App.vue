@@ -26,7 +26,7 @@
         },
         data(){
             return{
-                title:"IT",
+                title:"首页",
                 showNav: true
             }
         },

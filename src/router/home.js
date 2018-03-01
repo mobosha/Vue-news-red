@@ -9,7 +9,11 @@ const routerList = [
 	{
 		path: '/home',
 		name: 'home',  //首字母通常大写 Home
-		component: Home //不要引号，不是字符串  //resolve => {require(['../views/index/Home.vue'], resolve)} //懒加载
+		component: Home, //不要引号，不是字符串  //resolve => {require(['../views/index/Home.vue'], resolve)} //懒加载
+        meta: {  //路由元信息
+            requiresAuth: false,
+            _menuName: '首页'
+        },
 	},
 	{
 		path: '/article/:id',

@@ -20,6 +20,9 @@ import mockData from './../../mock/index.js'
 
       }
     },
+    created() {
+      this.$emit('title', this.$route.meta._menuName);
+    },
     methods: {
     	getDate: function(){
     		getNewCourse().then(res =>{

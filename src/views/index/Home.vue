@@ -68,6 +68,8 @@
             }
         },
         created(){
+            this.$emit('title', this.$route.meta._menuName);
+
             var myOption = this.$options.myOption //仅仅能得到当前页面的自定义选项
             if (myOption) {
               console.log(myOption)
@@ -96,6 +98,7 @@
             this.conflicting();  //配合plugin.js里边的mixin-conflicting方法，两个对象键名冲突时，取组件对象的键值对；  值为对象的选项，例如 methods, components 和 directives，将被混合为同一个对象。两个对象键名冲突时，取组件对象的键值对。
 
             this.getNewCourseData();
+            console.log(this.$route.meta)
 
         },
         mounted(){

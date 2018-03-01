@@ -12,7 +12,9 @@ Mock.mock(/\/home\/newCourse/, 'get', homeMock.getNewCourse);
 
 
 // 任务
-Mock.mock(/\/task\/index/, 'get', taskMock.getList);  //匹配正则
+Mock.mock(/\/task\/index/, 'get', function(options){
+	return taskMock.getList(options);
+});  //匹配正则
 
 
 // 商城

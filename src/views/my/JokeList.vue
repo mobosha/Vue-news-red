@@ -22,12 +22,14 @@
             }
         },
         created(){
-            this.$emit('title','笑话段子');
             Indicator.open({
                 text: '加载中...',
                 spinnerType: 'fading-circle'
             });
             this.get();
+        },
+        activated() {
+            this.$emit('title', this.$route.meta._menuName);
         },
         methods: {
             get: function () {
