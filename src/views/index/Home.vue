@@ -90,6 +90,8 @@
             // this.$myMethods.Stoast("plugins")  //2.调用plugin.js 插件;推荐
 
             // Vue.myGlobalMethod('myGlobalMethod,myGlobalMethod');
+
+            Vue.myGlobalMethod("insatll",50000);
             
             this.MoboToastTwo('MoboToastTwo');  //3. plugin.js  mixin
             
@@ -103,6 +105,9 @@
         },
         mounted(){
             this.updateMessage();
+            this.$on("hook:beforeDestroy", function(){
+                alert("hook:beforeMounted");
+            })
             
         },
         computed: {
