@@ -27,6 +27,7 @@
                 spinnerType: 'fading-circle'
             });
             this.get();
+            this.test();
         },
         activated() {
             this.$emit('title', this.$route.meta._menuName);
@@ -51,6 +52,16 @@
                 this.$refs.loadmore.onTopLoaded();
                 this.size += 5;
                 this.get();
+            },
+            test(){
+                var arrLike = {
+                    length: 3,
+                    width: 3,
+                    0: "foo",
+                    1: "bar"
+                };
+                var arr = Array.from( arrLike );
+                console.log(arr)
             }
         },
         components: {}
